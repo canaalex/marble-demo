@@ -16,7 +16,33 @@ export default {
     ],
   },
   theme: {
-    extend: {},
+    extend: {
+      borderRadius: {
+        10: "10px",
+      },
+      boxShadow: {
+        outer: "0 0 10px rgba(0, 0, 0, 0.25)",
+      },
+      padding: {
+        1.25: "5px",
+      },
+      backgroundColor: {
+        card: "#f1f1f1",
+      },
+      fontSize: {
+        "15px": "15px",
+        "10px": "10px",
+      },
+      minWidth: {
+        "793px": "793px",
+      },
+      maxWidth: {
+        "793px": "793px",
+      },
+      colors: {
+        "primary-grey": "#616161",
+      },
+    },
   },
   plugins: [require("daisyui")],
 };
