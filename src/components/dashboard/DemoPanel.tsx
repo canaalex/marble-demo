@@ -2,6 +2,7 @@ import { useState } from "react";
 import edit from "../assets/icons/edit.svg";
 import rise from "../assets/icons/rise.svg";
 import downArrow from "../assets/icons/downArrow.svg";
+import { ResponsiveLineChart } from "./ResponsiveLineChart";
 
 export const DemoPanel = () => {
   const [toggleButton, setToggleButton] = useState(false);
@@ -68,11 +69,7 @@ export const DemoPanel = () => {
             <img src={downArrow} alt="arrow" />
           </button>
         </div>
-        {toggleButton && (
-          <div>
-            childbviwqvbhwibvhowhoqvohbqwhrbvohbevvhoehqrvhwqvhoqwurvrhoeuvhuehquhufhoquvohuw
-          </div>
-        )}
+        {toggleButton && <ResponsiveLineChart />}
       </div>
     </div>
   );
