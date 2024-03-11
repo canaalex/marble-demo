@@ -102,12 +102,12 @@ export const Dashboard: React.FC = () => {
 
   return (
     <>
+      <DemoPanel />
       <Stats
         dailyRevenue={dailyRevenue}
         dailyOrders={dailyOrders}
         newCustomers={newCustomers}
       />
-      <DemoPanel />
       <TabView tabs={tabs} />
       <RecentSales />
     </>
