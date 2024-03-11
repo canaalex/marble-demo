@@ -2,7 +2,7 @@
 
 ## About
 
-This is a demo graph panel for the Marble assignment.
+###This is a demo graph panel for the Marble assignment.
 
 
 <img width="861" alt="Screenshot 2024-03-11 at 6 11 20 PM" src="https://github.com/canaalex/marble-demo/assets/62827365/0d3a9218-c269-4a26-8748-64d6ab2a14c5">
@@ -12,7 +12,7 @@ This is a demo graph panel for the Marble assignment.
 Clone this project using git clone
 
 ```
-git clone https://github.com/angular/quickstart  proj
+git clone https://github.com/canaalex/marble-demo.git  proj
 cd proj
 ```
 
