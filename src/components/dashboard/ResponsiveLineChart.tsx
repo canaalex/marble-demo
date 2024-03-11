@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import {
   LineChart,
   Line,
@@ -9,60 +9,61 @@ import {
   Legend,
   ResponsiveContainer,
   LegendProps,
+  TooltipProps,
 } from "recharts";
 
-const data = [
-  {
-    name: "Oct 2022",
-    line1: 15000,
-    line2: 15000,
-    amt: 2400,
-  },
-  {
-    name: "Dec 2022",
-    line1: 14500,
-    line2: 14000,
-    amt: 2210,
-  },
-  {
-    name: "Feb 2023",
-    line1: 10000,
-    line2: 16000,
-    amt: 2290,
-  },
-  {
-    name: "Apr 2023",
-    line1: 9500,
-    line2: 17000,
-    amt: 2000,
-  },
-  {
-    name: "Jun 2023",
-    line1: 12000,
-    line2: 10000,
-    amt: 2181,
-  },
-  {
-    name: "Aug 2023",
-    line1: 8000,
-    line2: 11000,
-    amt: 2500,
-  },
-  {
-    name: "Oct 2023",
-    line1: 19000,
-    line2: 17000,
-    amt: 2100,
-  },
-  {
-    name: "Dec 2023",
-    line1: 25000,
-    line2: 12000,
-    amt: 2000,
-  },
-];
-
 export const ResponsiveLineChart = () => {
+  const data = [
+    {
+      name: "Oct 2022",
+      line1: 15000,
+      line2: 15000,
+      amt: 2400,
+    },
+    {
+      name: "Dec 2022",
+      line1: 14500,
+      line2: 14000,
+      amt: 2210,
+    },
+    {
+      name: "Feb 2023",
+      line1: 10000,
+      line2: 16000,
+      amt: 2290,
+    },
+    {
+      name: "Apr 2023",
+      line1: 9500,
+      line2: 17000,
+      amt: 2000,
+    },
+    {
+      name: "Jun 2023",
+      line1: 12000,
+      line2: 10000,
+      amt: 2181,
+    },
+    {
+      name: "Aug 2023",
+      line1: 8000,
+      line2: 11000,
+      amt: 2500,
+    },
+    {
+      name: "Oct 2023",
+      line1: 19000,
+      line2: 17000,
+      amt: 2100,
+    },
+    {
+      name: "Dec 2023",
+      line1: 25000,
+      line2: 12000,
+      amt: 2000,
+    },
+  ];
+
   const renderLegend: React.FC<LegendProps> = ({ payload }) => {
     return (
       <div
@@ -99,13 +100,99 @@ export const ResponsiveLineChart = () => {
       </div>
     );
   };
+
   const formatYAxisTick = (value: number) => {
     if (value === 0) {
       return "0";
     }
-    return value / 1000 + "k";
+    return value / 1000 + "K";
   };
 
+  const CustomTooltip: React.FC<TooltipProps<number, string>> = ({
+    active,
+    payload,
+    label,
+  }) => {
+    if (active && payload && payload.length) {
+      const entry1 = payload.find((entry) => entry.dataKey === "line1");
+      const entry2 = payload.find((entry) => entry.dataKey === "line2");
+
+      if (entry1 && entry2) {
+        const value1 = entry1.value;
+        const value2 = entry2.value;
+        const color1 = entry1.stroke;
+        const color2 = entry2.stroke;
+
+        return (
+          <div
+            style={{
+              background: "#fff",
+              padding: "10px",
+              borderRadius: "10px",
+              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.25)",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <div
+                style={{
+                  width: "10px",
+                  height: "2px",
+                  backgroundColor: color1,
+                  marginRight: "10px",
+                }}
+              />
+              <span
+                style={{
+                  fontSize: "10px",
+                  fontWeight: 400,
+                }}
+              >
+                {label}
+              </span>
+              <span
+                style={{
+                  fontSize: "10px",
+                  marginLeft: "10px",
+                  fontWeight: 500,
+                }}
+              >
+                {value1}
+              </span>
+            </div>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <div
+                style={{
+                  width: "10px",
+                  height: "2px",
+                  backgroundColor: color2,
+                  marginRight: "10px",
+                }}
+              />
+              <span
+                style={{
+                  fontSize: "10px",
+                  fontWeight: 400,
+                }}
+              >
+                {label}
+              </span>
+              <span
+                style={{
+                  fontSize: "10px",
+                  marginLeft: "10px",
+                  fontWeight: 500,
+                }}
+              >
+                {value2}
+              </span>
+            </div>
+          </div>
+        );
+      }
+    }
+
+    return null;
+  };
   return (
     <ResponsiveContainer height={220} width="100%">
       <LineChart
@@ -134,7 +221,7 @@ export const ResponsiveLineChart = () => {
           tickLine={false}
           tick={{ fontSize: 12, fontWeight: 400, color: "#676767" }}
         />
-        <Tooltip />
+        <Tooltip content={<CustomTooltip />} />
         <Legend
           content={(props: any) => renderLegend(props)}
           wrapperStyle={{
@@ -143,8 +230,8 @@ export const ResponsiveLineChart = () => {
             fontWeight: 400,
             color: "rgba(112, 112, 122, 1)",
           }}
-          verticalAlign="bottom" // Align the legend to the bottom
-          layout="vertical" // Display the legend items vertically
+          verticalAlign="bottom"
+          layout="vertical"
         />
         <Line
           type="monotone"
