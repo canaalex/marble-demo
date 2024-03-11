@@ -2,7 +2,6 @@
 
 ![Cover Image](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/daisyui.jpg "Cover Image")
 
-
 <br />
 <br />
 
