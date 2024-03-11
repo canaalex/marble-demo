@@ -1,6 +1,7 @@
 <div align="center" style="margin: 30px;">
 
 ![Cover Image](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/daisyui.jpg "Cover Image")
+<img width="850" alt="Screenshot 2024-03-11 at 6 10 53 PM" src="https://github.com/canaalex/marble-demo/assets/62827365/0eb8ed40-ed7d-4d5b-9163-444fe9522553">
 
 <br />
 <br />
